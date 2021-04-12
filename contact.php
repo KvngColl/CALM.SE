@@ -7,7 +7,8 @@
     <title>Contact Us</title>
     <link rel="icon" href="Images/Goldbar.jpg" type="Image/jpg">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/main.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/parsleyjs@2.9.2/dist/parsley.min.js"></script>
@@ -61,86 +62,79 @@
 
 
 </head>
+
 <body>
 
+    <div class="back" style=" background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Images/bg04.jpg');height: 100vh;  background-position: center;background-repeat: no-repeat;background-size: cover;">
+        <?php
+            $currentPage = "contact";
+            include("includes/nav.php");
+        ?>
 
+        <form style="background-color: white; margin-top: 5%; margin-left: 35%; width: 30%;margin-right: 5%;" class="text-center border border-light p-5" method="POST" data-parsley-validate>
 
-<div class="back" style=" background-image: url('Images/bg04.jpg');height: 93%;  background-position: center;background-repeat: no-repeat;background-size: cover;">
-    <nav class="navbar navbar-expand-lg navbar-light btn-light">
-        <a class="navbar-brand" href="#">
-            <img src="Images/bg04.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
-            INSURANCE
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item ">
-                    <a class="nav-link" href="index.php">HOME <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about_us.html">FINANCIAL PLAN</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="contact.php">CONTACT</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">SETTING</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+            <p class="h4 mb-4">Contact Us</p>
+
+            <!-- Name Regex and requirements-->
+            <input type="text" id="Name" class="form-control mb-4" placeholder="Name" name="name" data-parsley-pattern="^[a-zA-Z ]+$" data-parsley-trigger="keyup" required>
+
+            <!-- Email-->
+            <input type="email" id="email" class="form-control mb-4" placeholder="Email" name="email" required>
+
+            <!-- Messages  -->
+            <textarea type="text" id="message" rows="2" class="form-control md-textarea" placeholder="Message" name="message" required></textarea>
 
 
 
+            <!-- Sign in button -->
+            <button class="btn btn-info btn-block my-4" type="submit" name="submit-c">Submit</button>
 
-    <form style="background-color: white; margin-top: 10%; margin-left: 35%; width: 30%;margin-right: 5%;" class="text-center border border-light p-5" method="POST"action="contact_us.php" data-parsley-validate>
+        </form>
+    </div>
 
-        <p class="h4 mb-4">Contact Us 🙂</p>
+    <!-- this code inserts a user's message into the database-->
+    <?php
 
-        <!-- Name Regex and requirements-->
-        <input type="text" id="Name" class="form-control mb-4" placeholder="Name" name="Name" data-parsley-pattern="^[a-zA-Z ]+$" data-parsley-trigger="keyup" required>
+        include_once("includes/connection.php");
+        $conn = new Database();
+        $dbase = $conn->connect();
 
-        <!-- Email-->
-        <input type="email" id="email" class="form-control mb-4" placeholder="Email" name="email" required>
+        if(isset($_POST["submit-c"])) {
+            $name= $_POST["name"];
+            $email= $_POST["email"];
+            $message= $_POST["message"];
 
-        <!-- Messages  -->
-        <textarea type="text" id="message" rows="2" class="form-control md-textarea" placeholder="Message" name="Message" required></textarea>
+            // Prepare an insert statement
+            $sql = "INSERT INTO contact_us(name, email, message) VALUES
+                    ('$name', '$email', '$message')";
 
+            $result = $dbase->query($sql);
+            
+            if($result){
+                echo "<div class='alert-success'>
+                        <span>Message Sent!</span>
+                        </div>";
+            }else{
+                echo "<div class='alert-error'>
+                        <span>Sorry, something went wrong</span>
+                        </div>";
+            }
+        }
 
+    ?>
 
-        <!-- Sign in button -->
-        <button class="btn btn-info btn-block my-4" type="submit" name="submit">Submit</button>
+    <script>
+        const flashdata = $(".flash-data").data("flashdata");
 
+        if (flashdata) {
+            Swal.fire({
+                icon: "success",
+                title: "Thank you for your Feedback",
+                text: "Message delivered will revert to you soon 😁.",
+                type: "success",
+            })
+        }
 
-
-
-    </form>
-</div>
-
-
-<?php if (isset($_GET['success'])) : ?>
-    <div class='flash-data' data-flashdata="<? $_GET['success'];?>"></div>
-<?php endif; ?>
-
-<script>
-
-
-    const flashdata = $(".flash-data").data("flashdata");
-
-    if (flashdata) {
-        Swal.fire({
-            icon: "success",
-            title: "Thank you for your Feedback",
-            text: "Message delivered will revert to you soon 😁.",
-            type: "success",
-        })
-    }
-
-</script>
+    </script>
 </body>
-<footer class="p-3 bg-dark text-white">
-    <h3>INSURANCE</h3>
-</footer>
 </html>

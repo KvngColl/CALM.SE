@@ -1,6 +1,6 @@
 <?php
 // Including functions.php to enable connection to the database
-include 'connection.php';
+include 'includes/connection.php';
 $pdo = pdo_connect_mysql();
 $msg = '';
 // Check if the contact id exists, for instance update.php?id=1 will get the contact with the id of 1

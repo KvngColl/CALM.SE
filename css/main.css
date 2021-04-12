@@ -1,7 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 body, html {
     height: 100%;
 }
 
+main > div {
+    color: white;
+    font-size: 100px;
+    font-weight: 700;
+    margin: 10% 20%;
+} 
 
 .aboutimg{
     width:100%;
@@ -51,6 +68,10 @@ body, html {
     font-size: large;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
+}
+
+button {
+    cursor: pointer;
 }
 
 .info-form .info-box button{
@@ -129,70 +150,6 @@ body, html {
     position: relative;
     margin-left: 0;
 }
-
-
-#sidebar{
-    height: 100%;
-    width: 300px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: steelblue;
-    overflow-x: hidden;
-    padding-top: 20px;
-    color: white;
-}
-
-#sidebar .title{
-    line-height: 65px;
-    text-align: center;
-    background:  steelblue;
-    font-size: 25px;
-    font-weight: 600;
-    color: #f2f2f2;
-    border-bottom: 1px solid steelblue;
-}
-.side-bar .title img{
-    width: 20px;
-}
-#sidebar .list-items{
-    position: relative;
-    background: steelblue;
-    width: 100%;
-    height: 100%;
-    list-style: none;
-}
-#sidebar .list-items li{
-    line-height: 70px;
-    border-top: 1px solid steelblue;
-    border-bottom: 1px solid #333;
-    transition: all 0.3s ease;
-}
-#sidebar .list-items li:hover{
-    color: #f1f1f1;
-
-
-}
-#sidebar .list-items li:first-child{
-    border-top: none;
-}
-#sidebar .list-items li a{
-    color: #f2f2f2;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
-    height: 100%;
-    width: 100%;
-    display: block;
-}
-
-
-
-
-
-
-
 
 .app-form {
     border: 2px;
@@ -297,4 +254,41 @@ table.dataTable thead .sorting_desc_disabled:before {
     display: block;
 }
 
-
+/* css for alert messages */
+.alert-success{
+    top: 90%;
+    right: 0;
+    z-index: 1;
+    position: fixed;
+    font-size: 18px;
+    padding: 20px 40px;
+    background: rgb(130, 255, 130);
+    border-left: 8px solid green;
+    border-radius: 5px;
+    animation: alert-success 14s ease forwards;
+}
+/* specify animation code */
+@keyframes alert-success {
+    100% { /* when the animation is at 100% it should do the ff */
+        opacity: 0;
+    }
+}
+.alert-error{
+    top: 90%;
+    right: 0;
+    z-index: 1;
+    position: fixed;
+    font-size: 18px;
+    padding: 20px 40px;
+    background: wheat;
+    border-left: 8px solid rgb(243, 160, 6);
+    border-radius: 5px;
+    animation: alert-error 14s ease forwards;
+}
+  /* specify animation code */
+@keyframes alert-error {
+    100% { /* when the animation is at 100% it should do the ff */
+      opacity: 0;
+    }
+}
+/* end of alert messages */

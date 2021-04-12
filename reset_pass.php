@@ -4,11 +4,7 @@ session_start();
 
 
 // Include config file
-require_once "connection.php";
-
-
-
-
+require_once "includes/connection.php";
 
 
 if (isset($_POST['submit'])) {
@@ -18,7 +14,7 @@ if (isset($_POST['submit'])) {
     $new_password = mysqli_real_escape_string($conn, $new_password);
 
 
-    $sql =  "SELECT * from students WHERE email = '$email'";
+    $sql =  "SELECT * from clientele WHERE client_email = '$email'";
 
     $results = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($results);
@@ -35,23 +31,23 @@ if (isset($_POST['submit'])) {
             $new_password = password_hash($new_password, PASSWORD_DEFAULT);
 
             // Prepare an update statement
-            $sql = "UPDATE students SET Password = '$new_password' WHERE email = '$email'";
+            $sql = "UPDATE clientele SET client_password = '$new_password' WHERE client_email = '$email'";
 
             $updatePass = mysqli_query($conn, $sql);
 
             if ($updatePass) {
                 header('Location: login.php?updatedpassword');
             } else {
-                header('Location: reset-password-student.php?error=resetfailed');
+                header('Location: reset_password.php?error=resetfailed');
             }
 
             // Close statement
             $stmt->close();
         } else{
-            header('Location: reset-password-student.php?error=resetfailed');
+            header('Location: reset_password.php?error=resetfailed');
         }
     } else {
-        header('Location: reset-password-student.php?error=resetfailed');
+        header('Location: reset_password.php?error=resetfailed');
     }
 
     // Close connection

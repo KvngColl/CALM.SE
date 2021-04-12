@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+main {
+    margin: 1% 20%;
+    position: absolute;
+    text-align: center;
+}
+main div.intro, label, .navigation li > a, .p-name {
+    color: white;
+}
+.p-name {
+    font-size: 50px;
+    font-weight: 700;
+}
+label {
+    font-size: 20px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5%;
+}
+div {
+    display: block;
+}
+.insert {
+    margin: 20px;
+}
+form label {
+    display: block;
+    padding: 4%;
+}
+input, select{
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 2px solid white;
+    padding: 12px 20px;
+    background: transparent;
+}
+select > option {
+    background: rgb(58, 58, 58);
+}
+input, select, option, button {
+    color: white;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+}
+
+button {
+    border: none;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background: rgb(92, 182, 2);
+
+    cursor: pointer;
+    left: 50%;
+}
+
+/* css for alert messages */
+.alert-success{
+    top: 90%;
+    right: 0;
+    z-index: 1;
+    position: fixed;
+    font-size: 18px;
+    padding: 20px 40px;
+    background: rgb(130, 255, 130);
+    border-left: 8px solid green;
+    border-radius: 5px;
+    animation: alert-success 600s ease forwards;
+}
+/* specify animation code */
+@keyframes alert-success {
+    100% { /* when the animation is at 100% it should do the ff */
+        opacity: 0;
+    }
+}
+.alert-error{
+    top: 90%;
+    right: 0;
+    z-index: 1;
+    position: fixed;
+    font-size: 18px;
+    padding: 20px 40px;
+    background: wheat;
+    border-left: 8px solid rgb(243, 160, 6);
+    border-radius: 5px;
+    animation: alert-error 10s ease forwards;
+}
+  /* specify animation code */
+@keyframes alert-error {
+    100% { /* when the animation is at 100% it should do the ff */
+      opacity: 0;
+    }
+}
+/* end of alert messages */

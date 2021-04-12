@@ -1,0 +1,103 @@
+.hamburger {
+    width: 20px;
+    cursor: pointer;
+    display: none;
+}
+.line {
+    width: 24px;
+    height: 4px;
+    margin: 4px 0;
+    background: white;
+}
+.close, #check {
+    display: none;
+}
+
+@media (max-width: 1024px){
+    nav{
+        padding: 15px 70px;
+    }
+    nav .hamburger {
+        display: block;
+    }
+    .close {
+        display: block;
+        color: black;
+        padding: 20px 0;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 2.5px;
+    }
+    .c {
+        padding-left: 15px;
+    }
+    .x {
+        font-size: 25px;
+        padding: 0 28px 0 15px;
+    }
+    #check:checked ~ .navigation {
+        left: 0;
+    }
+    nav ul {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        z-index: 1;
+        width: 300px;
+        height: 100%;
+        padding-bottom: 15px;
+        display: inline-block;
+        background-color: white;
+
+        transition: 0.6s;
+    }
+    nav ul > li {
+        display: block;
+        text-align: left;
+        padding: 10px 0;
+        margin: 0;
+    }
+    .close, nav ul > li {
+        width: 100%;
+        border-bottom: 1px solid rgb(235, 235, 235);
+    }
+    nav .navigation li > a {
+        color: black;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: 2.5px;
+
+        padding: 12px 25px;
+    }
+}
+
+nav, h1 {
+    padding: 3%;
+}
+.navigation {
+    float: right;
+}
+.navigation li {
+    display: inline-block;
+}
+.navigation li a {
+    font-size: 20px;
+    padding: 0 20px;
+    cursor: pointer;
+}
+.navigation li a:hover {
+    text-decoration: none;
+}
+.p-name {
+    font-size: 50px;
+    font-weight: 700;
+}
+.navigation li > a, .p-name {
+    color: white;
+    background: transparent;
+}
+
+a.active {
+    border-bottom: 1px solid chartreuse;
+}
